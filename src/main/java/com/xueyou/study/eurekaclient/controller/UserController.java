@@ -3,10 +3,14 @@ package com.xueyou.study.eurekaclient.controller;
 import com.xueyou.study.common.rabbitmq.Producer;
 import com.xueyou.study.serviceApi.models.dto.User;
 import com.xueyou.study.serviceApi.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Random;
 
 /**
  * 创建 by xueyo on 2019/8/14
@@ -17,6 +21,9 @@ public class UserController implements UserService {
 
     private final Producer producer;
 
+    @Value("${server.port}")
+    private Integer port;
+
     @Value("${from}")
     private String from;
 
@@ -26,7 +33,7 @@ public class UserController implements UserService {
 
     @Override
     public String hello(@RequestParam String name) {
-        return "Hello " + name;
+        return "欢迎 Hello " + name;
     }
 
     @Override
@@ -38,18 +45,26 @@ public class UserController implements UserService {
     }
 
     @Override
-    public String hello(@RequestBody User user) {
-        return "Hello " + user;
+    public String loadBalanced() {
+        return String.format("api所处端口, port: %s", port);
     }
 
+    @Override
+    public String hello(@RequestBody User user) {
+        return "欢迎 Hello " + user;
+    }
+
+    @ApiOperation(value = "test", notes = "获取配置中心的值", httpMethod = "GET")
     @RequestMapping("test")
     public String test() {
-        return "from = " + from;
+        return "从配置中心获取 from = " + from;
     }
 
+    @ApiOperation(value = "login", notes = "发送mq消息测试", httpMethod = "GET")
     @RequestMapping("login")
     public void sendWechatLogin(@RequestParam String key) {
         producer.sendExchangeMsg("topic-exchange", key, "XueYou");
     }
+
 
 }

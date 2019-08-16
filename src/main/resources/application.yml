@@ -1,5 +1,7 @@
 server:
   port: 8080
+  tomcat:
+    uri-encoding: UTF-8
 
 
 spring:
@@ -11,8 +13,15 @@ spring:
     username: root
     password: 123456
     virtual-host: my_vhost
+  http:
+    encoding:
+      enabled: true
+      force: true
+      charset: UTF-8
 
 eureka:
+  instance:
+    status-page-url-path: /swagger-ui.html
   client:
     service-url:
       defaultZone: http://@eureka-hostname@:@eureka-port@/eureka/,http://localhost2:2001/eureka/
@@ -21,3 +30,12 @@ management:
     web:
       exposure:
         include: refresh,health,info,bus-refresh
+
+
+swagger:
+  title: client-api
+  description: client接口
+  version: 1.0.0
+  name: XueYou
+  url: xueyou.com
+  email: xueyoucd@gmail.com
