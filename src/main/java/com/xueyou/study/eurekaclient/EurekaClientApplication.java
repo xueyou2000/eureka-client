@@ -3,7 +3,6 @@ package com.xueyou.study.eurekaclient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +23,7 @@ public class EurekaClientApplication {
         int sleepTime = new Random().nextInt(800);
         System.out.println("模拟超时时间: " + sleepTime);
         Thread.sleep(sleepTime);
-        return String.format("Hello Home, port: %s", port);
+        return String.format("阿斯顿 Home, port: %s", port);
     }
 
     public static void main(String[] args) {

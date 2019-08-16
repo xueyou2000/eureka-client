@@ -3,14 +3,10 @@ package com.xueyou.study.eurekaclient.controller;
 import com.xueyou.study.common.rabbitmq.Producer;
 import com.xueyou.study.serviceApi.models.dto.User;
 import com.xueyou.study.serviceApi.service.UserService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Random;
 
 /**
  * 创建 by xueyo on 2019/8/14
