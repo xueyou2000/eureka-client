@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+
+spring:
+  application:
+    name: client
+  rabbitmq:
+    host: 172.31.143.154
+    port: 5672
+    username: root
+    password: 123456
+    virtual-host: my_vhost
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://@eureka-hostname@:@eureka-port@/eureka/,http://localhost2:2001/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,info,bus-refresh
