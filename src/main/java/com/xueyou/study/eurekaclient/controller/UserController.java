@@ -50,6 +50,15 @@ public class UserController implements UserService {
         return "欢迎 Hello " + user;
     }
 
+    @ApiOperation(value = "rest", notes = "返回json", httpMethod = "GET")
+    @RequestMapping(value = "rest", produces = "application/json;charset=UTF-8")
+    public User rest(@RequestParam String name) {
+        User user = new User();
+        user.setName(name);
+        user.setAge(99);
+        return user;
+    }
+
     @ApiOperation(value = "test", notes = "获取配置中心的值", httpMethod = "GET")
     @RequestMapping("test")
     public String test() {
