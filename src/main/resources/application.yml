@@ -8,7 +8,7 @@ spring:
   application:
     name: client
   rabbitmq:
-    host: 172.31.143.154
+    host: 172.23.160.148
     port: 5672
     username: root
     password: 123456
@@ -30,8 +30,10 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh,health,info,bus-refresh
-
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
 
 swagger:
   title: client-api
