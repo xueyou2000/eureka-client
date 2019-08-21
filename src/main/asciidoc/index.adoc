@@ -1,16 +1,16 @@
-= My RESTful Notes API Guide
+= 我的RESTful-API文档
 
 [[overview]]
 = Overview
 
 [[overview-http-verbs]]
-== HTTP verbs
+== HTTP 动词
 
 RESTful notes tries to adhere as closely as possible to standard HTTP and REST conventions in its
 use of HTTP verbs.
 
 |===
-| Verb | Usage
+| 动词 | 描述
 
 | `GET`
 | Used to retrieve a resource
@@ -32,73 +32,37 @@ RESTful notes tries to adhere as closely as possible to standard HTTP and REST c
 use of HTTP status codes.
 
 |===
-| Status code | Usage
+| 状态码 | 描述
 
 | `200 OK`
-| The request completed successfully
+| 请求成功
 
 | `201 Created`
-| A new resource has been created successfully. The resource's URI is available from the response's
-`Location` header
+| 资源创建成功
 
 | `204 No Content`
-| An update to an existing resource has been applied successfully
+| 资源更新成功
 
 | `400 Bad Request`
-| The request was malformed. The response body will include an error providing further information
+| 请求格式不正确
 
 | `404 Not Found`
-| The requested resource did not exist
+| 请求资源不存在
+
+| `401 Unauthorized`
+| 未授权
 |===
 
-[[overview-errors]]
-== Errors
-
-Whenever an error response (status code >= 400) is returned, the body will contain a JSON object
-that describes the problem. The error object has the following structure:
-
-include::{snippets}/error-example/response-fields.adoc[]
-
-For example, a request that attempts to apply a non-existent tag to a note will produce a
-`400 Bad Request` response:
-
-include::{snippets}/error-example/http-response.adoc[]
-
-[[overview-hypermedia]]
-== Hypermedia
-
-RESTful Notes uses hypermedia and resources include links to other resources in their
-responses. Responses are in http://stateless.co/hal_specification.html[Hypertext Application
-from resource to resource.
-Language (HAL)] format. Links can be found beneath the `_links` key. Users of the API should
-not create URIs themselves, instead they should use the above-described links to navigate
-
-[[resources]]
-= Resources
 
 
+[[api]]
+== 接口
 
-[[resources-index]]
-== Index
-
-The index provides the entry point into the service.
-
-
-
-[[resources-index-access]]
-=== Accessing the index
-
-A `GET` request is used to access the index
-
-operation::index-example[snippets='response-fields,http-response,links']
-
-
-
-[[resources-notes]]
-== Notes
-
-.request
+.请求
 include::{snippets}/hello1-example/http-request.adoc[]
 
-.response
+.响应
 include::{snippets}/hello1-example/http-response.adoc[]
+
+.响应参数
+include::{snippets}/hello1-example/response-fields.adoc[]
